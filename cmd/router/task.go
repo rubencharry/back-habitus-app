@@ -9,15 +9,15 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func RegisterHabitRoutes(r chi.Router, db *sql.DB) {
+func RegisterTaskRoutes(r chi.Router, db *sql.DB) {
 
-	rp := repository.NewHabitRepository(db)
+	rp := repository.NewTasktRepository(db)
 
-	sv := service.NewHabitService(rp)
+	sv := service.NewTaskService(rp)
 
-	hd := handler.NewHabitHandler(sv)
+	hd := handler.NewTaskHandler(sv)
 
-	r.Route("/habits", func(r chi.Router) {
+	r.Route("/tasks", func(r chi.Router) {
 		r.Get("/", hd.GetAll)
 		r.Post("/", hd.Create)
 		r.Get("/{id}", hd.GetByID)

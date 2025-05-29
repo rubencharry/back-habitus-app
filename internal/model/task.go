@@ -39,3 +39,21 @@ func DocToTask(taskDoc *TaskDoc) *Task {
 		Created_at: taskDoc.Created_at,
 	}
 }
+
+func (t *Task) UpdateModel(taskDoc *TaskDoc) {
+	if taskDoc.Title != "" {
+		t.Title = taskDoc.Title
+	}
+	if taskDoc.Description != "" {
+		t.Description = taskDoc.Description
+	}
+	if taskDoc.DueDate != "" {
+		t.DueDate = taskDoc.DueDate
+	}
+	if taskDoc.Completed {
+		t.Completed = taskDoc.Completed
+	}
+	if taskDoc.Created_at != "" {
+		t.Created_at = taskDoc.Created_at
+	}
+}

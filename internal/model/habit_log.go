@@ -5,7 +5,6 @@ type HabitLog struct {
 	HabitID int
 	Date string
 	Completed string
-	CreatedAt string
 }
 
 type HabitLogDoc struct {
@@ -13,7 +12,6 @@ type HabitLogDoc struct {
 	HabitID int `json:"habit_id"`
 	Date string `json:"date"`
 	Completed string `json:"completed"`
-	CreatedAt string `json:"created_at"`
 }
 
 func HabitLogToDoc(habitLog *HabitLog) *HabitLogDoc {
@@ -22,7 +20,6 @@ func HabitLogToDoc(habitLog *HabitLog) *HabitLogDoc {
 		HabitID: habitLog.HabitID,
 		Date:    habitLog.Date,
 		Completed: habitLog.Completed,
-		CreatedAt: habitLog.CreatedAt,
 	}
 }
 
@@ -32,6 +29,17 @@ func DocToHabitLog(habitLogDoc *HabitLogDoc) *HabitLog {
 		HabitID: habitLogDoc.HabitID,
 		Date:    habitLogDoc.Date,
 		Completed: habitLogDoc.Completed,
-		CreatedAt: habitLogDoc.CreatedAt,
+	}
+}
+
+func (h *HabitLog) UpdateModel(habitLogDoc *HabitLogDoc) {
+	if habitLogDoc.HabitID != 0 {
+		h.HabitID = habitLogDoc.HabitID
+	}
+	if habitLogDoc.Date != "" {
+		h.Date = habitLogDoc.Date
+	}
+	if habitLogDoc.Completed != "" {
+		h.Completed = habitLogDoc.Completed
 	}
 }

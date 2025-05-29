@@ -35,3 +35,18 @@ func DocToHabit(habitDoc *HabitDoc) *Habit {
 		CreatedAt: habitDoc.CreatedAt,
 	}
 }
+
+func (h *Habit) UpdateModel(habitDoc *HabitDoc) {
+	if habitDoc.Title != "" {
+		h.Title = habitDoc.Title
+	}
+	if habitDoc.Description != "" {
+		h.Description = habitDoc.Description
+	}
+	if habitDoc.Frequency != "" {
+		h.Frequency = habitDoc.Frequency
+	}
+	if habitDoc.CreatedAt != "" {
+		h.CreatedAt = habitDoc.CreatedAt
+	}
+}

@@ -61,7 +61,9 @@ func (s *ServerMySQLChi) Setup() (err error) {
 	rt.Use(middleware.Logger)
 	rt.Use(middleware.Recoverer)
 
-	router.RegisterHahitRoutes(rt, s.db)
+	router.RegisterHabitRoutes(rt, s.db)
+	router.RegisterTaskRoutes(rt, s.db)
+	router.RegisterHabitLogRoutes(rt, s.db)
 
 	s.router = rt
 
@@ -69,7 +71,6 @@ func (s *ServerMySQLChi) Setup() (err error) {
 }
 
 func (s *ServerMySQLChi) Start() (err error) {
-
 	err = http.ListenAndServe(s.cfgAddr, s.router)
 	return
 }
